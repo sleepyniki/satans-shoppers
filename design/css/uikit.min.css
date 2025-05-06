@@ -1709,6 +1709,7 @@ select.uk-form-width-xsmall {
     box-sizing: border-box;
     padding-top: 40px;
     padding-bottom: 40px
+    
 }
 
 @media (min-width:960px) {

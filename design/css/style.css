@@ -77,3 +77,19 @@
 .order-confirm-table tbody tr:last-child, tfoot tr:nth-child(2) {
    border-bottom: 3px solid #e5e5e5 !important;
 }
+
+.Categoriën {
+   width: 205px;
+   height: 493px;
+   color: white;
+   background-color: #666;
+}
+
+.uk-width-4-5{
+
+}
+
+.uk-card-body{
+   background-color: #760a1e;
+
+}
