@@ -10,7 +10,7 @@ try {
   echo "Connection failed: " . $e->getMessage();
 }
 ?>
-<!DOCTYPE.php>
+<!DOCTYPE php>
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
