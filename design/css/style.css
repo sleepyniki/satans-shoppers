@@ -8,13 +8,14 @@
 }
 
 .product-image {
-   width: 206px;
-   height: 206px;
+   width: 300px;
+   height: 300px;
 }
 
 .product-card, .product-card-p {
    text-decoration: none !important;
    color: #666;
+   background-color: #760a1e;
 }
 
 .uk-card-home, .uk-card-body-home {
@@ -85,11 +86,6 @@
    background-color: #666;
 }
 
-.uk-width-4-5{
-
-}
-
-.uk-card-body{
-   background-color: #760a1e;
-
+.product-card-p{
+   color:white;
 }
