@@ -77,7 +77,7 @@ require_once("templates/head.inc.php");
                   </div>
                </div>
                <div class="uk-card-footer uk-flex uk-flex-between">
-                  <a href="login.html" class="">Log in</a>
+                  <a href="login.php" class="">Log in</a>
                   <button class="uk-button uk-button-primary" type="submit">Register</button>
                </div>
             </div>

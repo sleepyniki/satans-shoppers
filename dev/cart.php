@@ -54,7 +54,7 @@ include_once("templates/head.inc.php");
                            <p class="uk-width-1-2 uk-margin-remove-top uk-text-right uk-text-bold">&euro; 0.00</p>
                         </div>
                         <div class="uk-flex uk-flex-1 uk-flex-middle uk-flex-center uk-margin-medium-top">
-                           <a href="order.html" class="uk-button uk-button-primary">
+                           <a href="order.php" class="uk-button uk-button-primary">
                               Order
                            </a>
                         </div>

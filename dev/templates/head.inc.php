@@ -34,9 +34,9 @@ try {
             <div class="uk-navbar-left">
                <ul class="uk-navbar-nav">
                   <li>
-                     <a href="/">
-                        <img class="logo" src="img/logo4.png" alt="Webshop Het Witte Kippetje"
-                           title="Webshop Het Witte Kippetje" />
+                     <a href="index.php">
+                        <img class="logo" src="img/logo4.png" alt="Satan's Shoppers"
+                           title="Satans Shoppers" />
                        Satan's Shoppers 
                      </a>
                   </li>
@@ -44,7 +44,7 @@ try {
             </div>
             <div class="uk-navbar-right">
                <ul class="uk-navbar-nav">
-                  <li class="uk-active"><a href="/"><span uk-icon="icon: home"></span>Home</a></li>
+                  <li class="uk-active"><a href="index.php"><span uk-icon="icon: home"></span>Home</a></li>
                   <li><a href="login.php"><span uk-icon="icon: sign-in"></span>Log In</a></li>
                   <li><a href="register.php"><span uk-icon="icon: file-edit"></span>Register</a></li>
                   <li>
