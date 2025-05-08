@@ -31,10 +31,6 @@ include_once("templates/head.inc.php");
                <input class="uk-checkbox" id="books" type="checkbox" name="books" />
                <label for="hokken">Books</label>
             </div>
-            <div>
-               <input class="uk-checkbox" id="Capitalism" type="checkbox" name="Capitalism" />
-               <label for="hokken">Capitalism</label>
-            </div>
          </section>
          <section class="uk-width-4-5">
             <h4 class="uk-text-muted uk-text-small">Chosen categories: <span
