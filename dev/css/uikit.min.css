@@ -2073,7 +2073,7 @@ select.uk-form-width-xsmall {
 }
 
 .uk-card-hover:not(.uk-card-default):not(.uk-card-primary):not(.uk-card-secondary):hover {
-    background-color: #fff;
+    background-color: #570715;
     box-shadow: 0 14px 25px rgba(0, 0, 0, .16)
 }
 
@@ -2087,9 +2087,11 @@ select.uk-form-width-xsmall {
     color: #333
 }
 
-.uk-card-default.uk-card-hover:hover {
-    background-color: #fff;
-    box-shadow: 0 14px 25px rgba(0, 0, 0, .16)
+.uk-card-default.product-dis.uk-card-hover:hover {
+    background-color: #570715;
+    color: #fff;
+    box-shadow: 0 14px 25px rgba(0, 0, 0, .16);
+
 }
 
 .uk-card-default .uk-card-header {
