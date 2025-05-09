@@ -44,8 +44,13 @@ require_once("templates/head.inc.php");
 
                      </div>
                      <div class="uk-width-1-1 uk-flex uk-flex-column">
+                           <label for="city" class="uk-form-label">City<span class="uk-text-xsmall uk-text-italic uk-text-primary"> (required)</span></label>
+                           <input type="text" name="city" class="uk-input" id="city" placeholder="City..." />
+                           <p class="uk-text-danger uk-text-xsmall uk-text-italic uk-margin-remove-vertical">Fill in</p>
+                     </div>
+                     <div class="uk-width-1-1 uk-flex uk-flex-column">
                            <label for="country" class="uk-form-label">Country<span class="uk-text-xsmall uk-text-italic uk-text-primary"> (required)</span></label>
-                           <input type="text" name="country" class="uk-input" id="city" placeholder="Country..." />
+                           <input type="text" name="country" class="uk-input" id="country" placeholder="Country..." />
                            <p class="uk-text-danger uk-text-xsmall uk-text-italic uk-margin-remove-vertical">Fill in</p>
                      </div>
                      <div class="uk-margin-top">
