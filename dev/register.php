@@ -15,20 +15,14 @@ require_once("templates/head.inc.php");
                <div class="uk-card-body uk-flex uk-flex-between uk-card-body-gap">
                   <div class="uk-width-1-1 uk-flex uk-flex-column">
                      <div class="">
-                        <label for="firstname" class="uk-form-label">First Name<span class="uk-text-xsmall uk-text-italic uk-text-primary"> (required)</span></label>
-                        <input type="text" name="firstname" class="uk-input" id="firstname" placeholder="First Name..." />
+                        <label for="username" class="uk-form-label">Username<span class="uk-text-xsmall uk-text-italic uk-text-primary"> (required)</span></label>
+                        <input type="text" name="username" class="uk-input" id="username" placeholder="Username..." />
                         <p class="uk-text-danger uk-text-xsmall uk-text-italic uk-margin-remove-vertical">Fill in</p>
                      </div>
-                     <div class="uk-flex uk-gap uk-margin-top">
-                        <div class="uk-width-1-5">
-                           <label for="prefixes" class="uk-form-label">Prefixes</label>
-                           <input type="text" name="prefixes" class="uk-input" id="prefixes" placeholder="Prefixes..." />
-                        </div>
-                        <div class="uk-width-4-5">
-                           <label for="lastname" class="uk-form-label">Last Name<span class="uk-text-xsmall uk-text-italic uk-text-primary"> (required)</span></label>
-                           <input type="text" name="lastname" class="uk-input" id="lastname" placeholder="Last Name..." />
-                           <p class="uk-text-danger uk-text-xsmall uk-text-italic uk-margin-remove-vertical">Fill in</p>
-                        </div>
+                     <div class="uk-width-1-1 uk-flex uk-flex-column">
+                      <label for="fullname" class="uk-form-label">Full Name<span class="uk-text-xsmall uk-text-italic uk-text-primary"> (required)</span></label>
+                       <input type="text" name="fullname" class="uk-input" id="fullname" placeholder="Full Name..." />
+                       <p class="uk-text-danger uk-text-xsmall uk-text-italic uk-margin-remove-vertical">Fill in</p>
                      </div>
                      
                      <div class="uk-flex uk-gap uk-margin-top">
@@ -42,22 +36,17 @@ require_once("templates/head.inc.php");
                            <input type="text" name="housenumber" class="uk-input" id="housenumber" placeholder="House Number..." />
                            <p class="uk-text-danger uk-text-xsmall uk-text-italic uk-margin-remove-vertical">Fill in</p>
                         </div>
-                        <div class="uk-width-1-5">
-                           <label for="addition" class="uk-form-label">Additions</label>
-                           <input type="text" name="addition" class="uk-input" id="addition" placeholder="Additions..." />
-                        </div>
-                     </div>
-                     <div class="uk-flex uk-gap uk-margin-top">
-                        <div class="uk-width-1-5">
+			<div class="uk-width-1-5">
                            <label for="zipcode" class="uk-form-label">Postal Code<span class="uk-text-xsmall uk-text-italic uk-text-primary"> (required)</span></label>
                            <input type="text" name="zipcode" class="uk-input" id="zipcode" placeholder="Postal Code..." />
                            <p class="uk-text-danger uk-text-xsmall uk-text-italic uk-margin-remove-vertical">Fill in</p>
                         </div>
-                        <div class="uk-width-4-5">
-                           <label for="city" class="uk-form-label">Country<span class="uk-text-xsmall uk-text-italic uk-text-primary"> (required)</span></label>
-                           <input type="text" name="city" class="uk-input" id="city" placeholder="Country..." />
+
+                     </div>
+                     <div class="uk-width-1-1 uk-flex uk-flex-column">
+                           <label for="country" class="uk-form-label">Country<span class="uk-text-xsmall uk-text-italic uk-text-primary"> (required)</span></label>
+                           <input type="text" name="country" class="uk-input" id="city" placeholder="Country..." />
                            <p class="uk-text-danger uk-text-xsmall uk-text-italic uk-margin-remove-vertical">Fill in</p>
-                        </div>
                      </div>
                      <div class="uk-margin-top">
                         <label for="email" class="uk-form-label">Email<span class="uk-text-xsmall uk-text-italic uk-text-primary"> (required)</span></label>
@@ -70,7 +59,7 @@ require_once("templates/head.inc.php");
                         <p class="uk-text-danger uk-text-xsmall uk-text-italic uk-margin-remove-vertical">Fill in</p>
                      </div>
                      <div class="uk-margin-top">
-                        <label for="password-confirm" class="uk-form-label">Password controle<span class="uk-text-xsmall uk-text-italic uk-text-primary"> (required)</span></label>
+                        <label for="password-confirm" class="uk-form-label">Password control<span class="uk-text-xsmall uk-text-italic uk-text-primary"> (required)</span></label>
                         <input type="password" name="password_confirm" class="uk-input" id="password-confirm" placeholder="Fill in your password one more time..." />
                         <p class="uk-text-danger uk-text-xsmall uk-text-italic uk-margin-remove-vertical">The passwords do not match</p>
                      </div>
