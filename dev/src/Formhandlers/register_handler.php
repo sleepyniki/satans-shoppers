@@ -1,15 +1,6 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-try {
-  $conn = new PDO("mysql:host=$servername;dbname=devil-shop", $username, $password);
-  // set the PDO error mode to exception
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-  echo "Connection failed: " . $e->getMessage();
-  die();
-}
+session_start();
+require_once("../Database/Database.php");
 
 $valid = true;
 
@@ -77,6 +68,8 @@ if(!$valid){
 $sql = "INSERT INTO users (username, fullname, password, email, streetname, housenumber, postalcode, city, country) VALUES (?,?,?,?,?,?,?,?,?)";
 $statement = $conn->prepare($sql);
 $statement->execute([$_POST['username'],$_POST['fullname'],$_POST['password'],$_POST['email'],$_POST['street'],$_POST['housenumber'],$_POST['zipcode'],$_POST['city'],$_POST['country']]); 
+
+$_SESSION["username"] = $_POST['username'];
 
 header("Location: http://localhost/satans-shoppers/index.php");
 exit;

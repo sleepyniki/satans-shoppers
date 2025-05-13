@@ -1,14 +1,6 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-try {
-  $conn = new PDO("mysql:host=$servername;dbname=devil-shop", $username, $password);
-  // set the PDO error mode to exception
-  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-  echo "Connection failed: " . $e->getMessage();
-}
+session_start();
+require_once(dirname(__DIR__) . "/src/Database/Database.php");
 ?>
 <!DOCTYPE php>
 <head>
@@ -45,8 +37,10 @@ try {
             <div class="uk-navbar-right">
                <ul class="uk-navbar-nav">
                   <li class="uk-active"><a href="index.php"><span uk-icon="icon: home"></span>Home</a></li>
+<?php if(empty($_SESSION["username"])): ?>
                   <li><a href="login.php"><span uk-icon="icon: sign-in"></span>Log In</a></li>
                   <li><a href="register.php"><span uk-icon="icon: file-edit"></span>Register</a></li>
+<?php else: ?>
                   <li>
                      <a href="cart.php">
                         <span uk-icon="icon: cart"></span>
@@ -55,7 +49,7 @@ try {
                      </a>
                   </li>
                   <li>
-                     <a href="#"><span uk-icon="icon: user"></span>User<span uk-navbar-parent-icon></span></a>
+                     <a href="#"><span uk-icon="icon: user"></span><?= $_SESSION["username"] ?><span uk-navbar-parent-icon></span></a>
                      <div class="uk-navbar-dropdown">
                         <ul class="uk-nav uk-navbar-dropdown-nav">
                            <li class="uk-nav-header">Your Information</li>
@@ -65,10 +59,11 @@ try {
                            <li class="uk-nav-header">Contact</li>
                            <li><a href="#"><span uk-icon="icon: info"></span>Customer Service</a></li>
                            <li class="uk-nav-divider"></li>
-                           <li><a href="#"><span uk-icon="icon: sign-out"></span>Log Out</a></li>
+                           <li><a href="src/Helpers/Logout.php"><span uk-icon="icon: sign-out"></span>Log Out</a></li>
                         </ul>
                      </div>
                   </li>
+<?php endif ?>
                </ul>
             </div>
          </div>
