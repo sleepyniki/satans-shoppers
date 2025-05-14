@@ -16,13 +16,46 @@ $_SESSION['register_email'] = $_POST['email'];
 $_SESSION['register_password'] = $_POST['password'];
 $_SESSION['register_password_confirm'] = $_POST['password_confirm'];
 
-if(!isset($_POST['fullname']) || empty($_POST['fullname'])){
-	$valid="Full Name not filled in";
+if($_POST['password'] != $_POST['password_confirm']){
+	$valid="Passwords do not match";
+}
+
+if(!isset($_POST['password_confirm']) || empty($_POST['password_confirm'])){
+	$valid="Password verification not filled in";
+}
+
+if(!isset($_POST['password']) || empty($_POST['password'])){
+	$valid="Password not filled in";
+}
+
+if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+	$valid="Email not filled in";
+}
+
+if(!isset($_POST['country']) || empty($_POST['country'])){
+	$valid="Country not filled in";
+}
+
+if(!isset($_POST['city']) || empty($_POST['city'])){
+	$valid="City not filled in";
+}
+
+if(!isset($_POST['zipcode']) || empty($_POST['zipcode'])){
+	$valid="Zipcode not filled in";
+}
+
+if(!isset($_POST['housenumber']) || empty($_POST['housenumber'])){
+	$valid="House number not filled in";
+}
+
+if(!isset($_POST['street']) || empty($_POST['street'])){
+	$valid="Street not filled in";
 }
 
 if(!isset($_POST['username']) || empty($_POST['username'])){
 	$valid="Username not filled in";
 }
+
 $sql = "SELECT username FROM users WHERE username = ?";
 $statement = $conn->prepare($sql);
 $statement->execute([$_POST['username']]);
@@ -32,40 +65,8 @@ if(!empty($username_check)){
 	$valid = "Username already exists";
 }
 
-if(!isset($_POST['street']) || empty($_POST['street'])){
-	$valid="Street not filled in";
-}
-
-if(!isset($_POST['housenumber']) || empty($_POST['housenumber'])){
-	$valid="House number not filled in";
-}
-
-if(!isset($_POST['zipcode']) || empty($_POST['zipcode'])){
-	$valid="Zipcode not filled in";
-}
-
-if(!isset($_POST['city']) || empty($_POST['city'])){
-	$valid="City not filled in";
-}
-
-if(!isset($_POST['country']) || empty($_POST['country'])){
-	$valid="Country not filled in";
-}
-
-if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-	$valid="Email not filled in";
-}
-
-if(!isset($_POST['password']) || empty($_POST['password'])){
-	$valid="Password not filled in";
-}
-
-if(!isset($_POST['password_confirm']) || empty($_POST['password_confirm'])){
-	$valid="Password verification not filled in";
-}
-
-if($_POST['password'] != $_POST['password_confirm']){
-	$valid="Passwords do not match";
+if(!isset($_POST['fullname']) || empty($_POST['fullname'])){
+	$valid="Full Name not filled in";
 }
 
 if($valid != "yes"){

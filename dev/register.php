@@ -1,5 +1,8 @@
 <?php
 require_once("templates/head.inc.php");
+if(!isset($_SESSION["error"])){
+	$_SESSION["error"] = "none";
+}
 ?>
       <main class="uk-container uk-padding uk-flex uk-flex-middle uk-flex-center">
          <form method="POST" action="src/Formhandlers/register_handler.php" class="uk-width-1-1 uk-flex uk-flex-center">
@@ -18,7 +21,7 @@ require_once("templates/head.inc.php");
                   <div class="uk-width-1-1 uk-flex uk-flex-column">
                      <div class="">
                         <label for="username" class="uk-form-label">Username<span class="uk-text-xsmall uk-text-italic uk-text-primary"> (required)</span></label>
-                        <input type="text" name="username" class="uk-input" id="username" placeholder="Username..."  <?php if(!empty($_SESSION['register_fullname'])){ echo "value='" . $_SESSION['register_username'] . "'" ; }?>/>
+                        <input type="text" name="username" class="uk-input" id="username" placeholder="Username..."  <?php if(!empty($_SESSION['register_username'])){ echo "value='" . $_SESSION['register_username'] . "'" ; }?>/>
                         <p class="uk-text-danger uk-text-xsmall uk-text-italic uk-margin-remove-vertical">Fill in</p>
                      </div>
                      <div class="uk-width-1-1 uk-flex uk-flex-column">
