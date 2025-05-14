@@ -71,7 +71,7 @@ if(!isset($_POST['fullname']) || empty($_POST['fullname'])){
 
 if($valid != "yes"){
 	$_SESSION["error"] = $valid;
-	header("Location: http://localhost/satans-shoppers/register.php");
+	header("Location: ../../register.php");
 	exit;
 }
 
@@ -85,5 +85,5 @@ $statement->execute([$_POST['username'],$_POST['fullname'],$_POST['password'],$_
 
 $_SESSION["username"] = $_POST['username'];
 
-header("Location: http://localhost/satans-shoppers/index.php");
+header("Location: ../../index.php");
 exit;

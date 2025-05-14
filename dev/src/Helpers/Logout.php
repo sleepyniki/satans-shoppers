@@ -11,4 +11,4 @@ $_SESSION['register_country'] = "";
 $_SESSION['register_email'] = "";
 $_SESSION['register_password'] = "";
 $_SESSION['register_password_confirm'] = "";
-header("Location: http://localhost/satans-shoppers/index.php");
+header("Location: ../../index.php");
