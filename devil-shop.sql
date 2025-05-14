@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2025 at 01:29 PM
+-- Generation Time: May 12, 2025 at 12:28 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -106,9 +106,14 @@ CREATE TABLE `shopping-cart` (
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
+  `fullname` varchar(11) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `address` varchar(64) NOT NULL
+  `streetname` varchar(255) NOT NULL,
+  `housenumber` varchar(255) NOT NULL,
+  `postalcode` varchar(255) NOT NULL,
+  `city` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `country` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
