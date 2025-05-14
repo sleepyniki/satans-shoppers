@@ -2,14 +2,26 @@
 session_start();
 require_once("../Database/Database.php");
 
-$valid = true;
+$valid = "yes";
+$_SESSION["error"]="none";
+
+$_SESSION['register_fullname'] = $_POST['fullname'];
+$_SESSION['register_username'] = $_POST['username'];
+$_SESSION['register_street'] = $_POST['street'];
+$_SESSION['register_housenumber'] = $_POST['housenumber'];
+$_SESSION['register_zipcode'] = $_POST['zipcode'];
+$_SESSION['register_city'] = $_POST['city'];
+$_SESSION['register_country'] = $_POST['country'];
+$_SESSION['register_email'] = $_POST['email'];
+$_SESSION['register_password'] = $_POST['password'];
+$_SESSION['register_password_confirm'] = $_POST['password_confirm'];
 
 if(!isset($_POST['fullname']) || empty($_POST['fullname'])){
-	$valid=false;
+	$valid="Full Name not filled in";
 }
 
 if(!isset($_POST['username']) || empty($_POST['username'])){
-	$valid=false;
+	$valid="Username not filled in";
 }
 $sql = "SELECT username FROM users WHERE username = ?";
 $statement = $conn->prepare($sql);
@@ -17,46 +29,47 @@ $statement->execute([$_POST['username']]);
 $username_check = $statement->fetch();
 
 if(!empty($username_check)){
-	$valid = false;
+	$valid = "Username already exists";
 }
 
 if(!isset($_POST['street']) || empty($_POST['street'])){
-	$valid=false;
+	$valid="Street not filled in";
 }
 
 if(!isset($_POST['housenumber']) || empty($_POST['housenumber'])){
-	$valid=false;
+	$valid="House number not filled in";
 }
 
 if(!isset($_POST['zipcode']) || empty($_POST['zipcode'])){
-	$valid=false;
+	$valid="Zipcode not filled in";
 }
 
 if(!isset($_POST['city']) || empty($_POST['city'])){
-	$valid=false;
+	$valid="City not filled in";
 }
 
 if(!isset($_POST['country']) || empty($_POST['country'])){
-	$valid=false;
+	$valid="Country not filled in";
 }
 
 if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-	$valid=false;
+	$valid="Email not filled in";
 }
 
 if(!isset($_POST['password']) || empty($_POST['password'])){
-	$valid=false;
+	$valid="Password not filled in";
 }
 
 if(!isset($_POST['password_confirm']) || empty($_POST['password_confirm'])){
-	$valid=false;
+	$valid="Password verification not filled in";
 }
 
 if($_POST['password'] != $_POST['password_confirm']){
-	$valid=false;
+	$valid="Passwords do not match";
 }
 
-if(!$valid){
+if($valid != "yes"){
+	$_SESSION["error"] = $valid;
 	header("Location: http://localhost/satans-shoppers/register.php");
 	exit;
 }
