@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2025 at 01:13 PM
+-- Generation Time: May 15, 2025 at 09:12 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,7 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cart-items` (
   `id` int(11) NOT NULL,
-  `product-id` int(11) NOT NULL,
+  `cart_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -68,23 +69,23 @@ CREATE TABLE `products` (
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `categories` varchar(255) NOT NULL
+  `category_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `price`, `name`, `description`, `image`, `categories`) VALUES
-(1, 150.00, 'phone call with satan', 'when buying this product you will be given a phone call with the dark lord him self satan! this call i guaranteed to last at least 666 second\'s ', 'phone.png', 'Demons'),
-(2, 50.00, 'ticket to hell  ', 'this is a ticket to hell when you say that someone should go to hell this is the gift for them buying this item will send the person straight to hell', 'ticket.png', 'Summoning materials '),
-(3, 20.00, 'Summoning my first demon, a children\'s book, for young children', 'what a good way for children to learn how to summon a demon? in this book we will explain how a child can summon there first demon ', 'summoning.png', 'books'),
-(4, 20.00, ' I accidentally summoned a demon and I don\'t know what to do, een love romance novel', 'in this book we follow the main protagonist\r\nwho accidentally summons a demon and falls in love with them a trilling story about love danger and demonic drama', 'book.png', 'books'),
-(5, 10.00, 'summoning Candles', 'this is a set of summoning Candles ', 'candle.png', 'Summoning materials'),
-(6, 70.00, 'Artificial blood ', 'this is a Artificial blood pack for your summoning need ', 'bloodbag.png', 'Summoning materials'),
-(7, 66.66, 'Satan\'s contracts booster pack', 'this is a booster pack for your soul contracting needs ', 'satans-contracts-boosterpack-1.png', 'Collectibles'),
-(8, 18.99, ' Dante’s Inferno, a travel guide ', 'Dante\'s Inferno. An epic and searing poem, that takes the reader on an intense journey through the darkest pits of hell. As as travel guide', 'inferno.png', 'books'),
-(9, 300.00, '3000 year old paper', 'this is a paper from 3000 years ago use it for all your contracting need ', 'paper.png', 'Contracts');
+INSERT INTO `products` (`id`, `price`, `name`, `description`, `image`, `category_id`) VALUES
+(1, 150.00, 'phone call with satan', 'when buying this product you will be given a phone call with the dark lord him self satan! this call i guaranteed to last at least 666 second\'s ', 'phone.png', 0),
+(2, 50.00, 'ticket to hell  ', 'this is a ticket to hell when you say that someone should go to hell this is the gift for them buying this item will send the person straight to hell', 'ticket.png', 0),
+(3, 20.00, 'Summoning my first demon, a children\'s book, for young children', 'what a good way for children to learn how to summon a demon? in this book we will explain how a child can summon there first demon ', 'summoning.png', 0),
+(4, 20.00, ' I accidentally summoned a demon and I don\'t know what to do, een love romance novel', 'in this book we follow the main protagonist\r\nwho accidentally summons a demon and falls in love with them a trilling story about love danger and demonic drama', 'book.png', 0),
+(5, 10.00, 'summoning Candles', 'this is a set of summoning Candles ', 'candle.png', 0),
+(6, 70.00, 'Artificial blood ', 'this is a Artificial blood pack for your summoning need ', 'bloodbag.png', 0),
+(7, 66.66, 'Satan\'s contracts booster pack', 'this is a booster pack for your soul contracting needs ', 'satans-contracts-boosterpack-1.png', 0),
+(8, 18.99, ' Dante’s Inferno, a travel guide ', 'Dante\'s Inferno. An epic and searing poem, that takes the reader on an intense journey through the darkest pits of hell. As as travel guide', 'inferno.png', 0),
+(9, 300.00, '3000 year old paper', 'this is a paper from 3000 years ago use it for all your contracting need ', 'paper.png', 0);
 
 -- --------------------------------------------------------
 
@@ -94,7 +95,9 @@ INSERT INTO `products` (`id`, `price`, `name`, `description`, `image`, `categori
 
 CREATE TABLE `shopping-cart` (
   `id` int(11) NOT NULL,
-  `user-id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
+  `shopping_date` date NOT NULL,
+  `total_amount` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -182,7 +185,7 @@ ALTER TABLE `shopping-cart`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
