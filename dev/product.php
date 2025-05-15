@@ -1,11 +1,32 @@
 <?php
 include_once("templates/head.inc.php");
 $product = null;
+$quantity = 1;
+
 if(isset($_GET['id'])){
 	$sql = "SELECT name, price, description, image FROM products WHERE id = ?";
 	$statement = $conn->prepare($sql);
 	$statement->execute([$_GET['id']]);
 	$product = $statement->fetch();
+
+	if(isset($_SESSION["username"])){
+		$sql = "SELECT id FROM users WHERE username = ?";
+		$statement = $conn->prepare($sql);
+		$statement->execute([$_SESSION["username"]]);
+		$user_id = $statement->fetch();
+
+		$sql = "SELECT id FROM `shopping-cart` WHERE user_id = ?";
+		$statement = $conn->prepare($sql);
+		$statement->execute([$user_id['id']]);
+		$cart_id = $statement->fetch();
+
+		if(!empty($cart_id)){
+			$sql = "SELECT amount FROM `cart-items` WHERE cart_id = ? AND product_id = ?";
+			$statement = $conn->prepare($sql);
+			$statement->execute([$cart_id['id'], $_GET['id']]);
+			$quantity = $statement->fetch();
+		}
+	}
 }
 ?>
       <main class="uk-container uk-padding">
@@ -28,10 +49,15 @@ if(isset($_GET['id'])){
                            <p class="product-view__price uk-text-bold uk-text-danger uk-text-left uk-text-bolder">&euro; <?= $product["price"]; ?></p>
                         </div>
                         <div>
-                           <button class="uk-button uk-button-primary">
+<?php if(!empty($_SESSION["username"])):  ?>
+			   <form method="POST" action="src/Formhandlers/product_handler.php?id=<?= $_GET['id'] ?>" "uk-width-1-1 uk-flex uk-flex-center">
+			   <input type="number" name="quantity" value="<?= $quantity; ?>" min="1" max="666">
+                           <button class="uk-button uk-button-primary" type="submit">
                               <span uk-icon="icon: cart"></span>
-                              Add to cart/In cart
+                              Update Cart
                            </button>
+</form>
+<?php endif; ?>
                         </div>   
                      </div>
 <?php

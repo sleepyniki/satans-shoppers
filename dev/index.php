@@ -1,5 +1,19 @@
 <?php
 include_once("templates/head.inc.php");
+
+$db_host = '127.0.0.1';
+$db_name = 'devil-shop';
+$db_user = 'root';
+$db_pass = '';
+
+$statement = $conn->prepare('SELECT * FROM products');
+$statement->execute();
+$products = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+
+
 ?>
 
    <main class="uk-container uk-padding">
@@ -36,18 +50,23 @@ include_once("templates/head.inc.php");
             <h4 class="uk-text-muted uk-text-small">Chosen categories: <span
                   class="uk-text-small uk-text-primary">All</span></h4>
             <div class="uk-flex uk-flex-home uk-flex-wrap">
-<!-- PRODUCT TEMPLATE -->
+            <?php foreach($products as $product): ?>
+            <!-- PRODUCT TEMPLATE -->
                <a class="product-card uk-card uk-card-home uk-card-default uk-card-small uk-card-hover"
-                  href="product.php">
+                  href="product.php?id=<?= $product['id'] ?>">
                   <div class="uk-card-media-top uk-align-center">
-                     <img src="img/" alt="" class="product-image uk-align-center">
+                     <img src="<?= 'img/' . $product['image'] ?>" alt="" class="product-image uk-align-center">
                   </div>
                   <div class="uk-card-body uk-card-body-home">
-                     <p class="product-card-p">Description</p>
-                     <p class="product-card-p uk-text-large uk-text-bold uk-text-danger uk-text-right">&euro; 0.00</p>
+                     <p class="product-card-p"><?= $product['description'] ?></p>
+                     <p class="product-card-p uk-text-large uk-text-bold uk-text-danger uk-text-right"> 
+                     &euro; <?= $product['price'] ?>
+                     </p>
                   </div>
                </a>
-<!-- END OF PRODUCT TEMPLATE -->
+
+            <!-- END OF PRODUCT TEMPLATE -->
+            <?php endforeach; ?>
          </section>
 <?php
 include_once("templates/foot.inc.php");
