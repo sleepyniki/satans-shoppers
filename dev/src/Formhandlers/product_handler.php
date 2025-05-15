@@ -40,13 +40,11 @@ if(isset($_SESSION["username"])){
 	}
 }
 else{
-	$_SESSION['g'] = "not username";
 	header("Location: ../../product.php?id=" . $_GET['id']);
 	exit;
 }
 
 if(!is_int(intval($_POST['quantity'])) || !isset($_POST['quantity']) || empty($_POST['quantity'])){
-	$_SESSION['g'] = "not int";
 	header("Location: ../../product.php?id=" . $_GET['id']);
 	exit;
 }
@@ -60,7 +58,6 @@ if(empty($cart_item)){
 	$sql = "INSERT INTO `cart-items` (cart_id,product_id,amount,price) VALUES (?,?,?,?)";
 	$statement = $conn->prepare($sql);
 	$statement->execute([$cart_id['id'], $_GET['id'], $_POST['quantity'], $product['price']]);
-	$_SESSION['g'] = "all good; insert";
 }
 else{
 	$sql = "UPDATE `shopping-cart` SET total_amount = total_amount - ? * ? WHERE id = ?";
@@ -69,7 +66,6 @@ else{
 	$sql = "UPDATE `cart-items` SET amount = ? WHERE id = ?";
 	$statement = $conn->prepare($sql);
 	$statement->execute([$_POST['quantity'],$cart_item['id']]);
-	$_SESSION['g'] = "all good; exist";
 }
 
 $sql = "UPDATE `shopping-cart` SET total_amount = total_amount + ? * ? WHERE id = ?";

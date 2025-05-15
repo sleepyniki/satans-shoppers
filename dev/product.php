@@ -28,8 +28,6 @@ if(isset($_GET['id'])){
 		}
 	}
 }
-echo $_SESSION['g'];
-echo $_SESSION['l'];
 ?>
       <main class="uk-container uk-padding">
          <div class="uk-grid">
