@@ -16,23 +16,23 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
             <hr class="uk-divider" />
             <div>
                <input class="uk-checkbox" id="Demons" type="checkbox" name="Demons" />
-               <label for="chickens">Demons</label>
+               <label for="demons">Demons</label>
             </div>
             <div>
                <input class="uk-checkbox" id="Contracts" type="checkbox" name="Contracts" />
-               <label for="paint">Contracts</label>
+               <label for="contracts">Contracts</label>
             </div>
             <div>
                <input class="uk-checkbox" id="Summoning" type="checkbox" name="Summoning" />
-               <label for="machines">Summoning Materials</label>
+               <label for="materials">Summoning Materials</label>
             </div>
             <div>
                <input class="uk-checkbox" id="Collectibles" type="checkbox" name="Collectibles" />
-               <label for="hokken">Collectibles</label>
+               <label for="collectibles">Collectibles</label>
             </div>
             <div>
                <input class="uk-checkbox" id="books" type="checkbox" name="books" />
-               <label for="hokken">Books</label>
+               <label for="books">Books</label>
             </div>
          </section>
          <section class="uk-width-4-5">
@@ -46,7 +46,7 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
                      <img src="<?= 'img/' . $product['image'] ?>" alt="" class="product-image uk-align-center">
                   </div>
                   <div class="uk-card-body uk-card-body-home">
-                     <p class="product-card-p"><?= $product['description'] ?></p>
+                     <p class="product-card-p"><?= $product['name'] ?></p>
                      <p class="product-card-p uk-text-large uk-text-bold uk-text-danger uk-text-right"> 
                      &euro; <?= $product['price'] ?>
                      </p>
