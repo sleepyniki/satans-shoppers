@@ -11,4 +11,5 @@ $_SESSION['register_country'] = "";
 $_SESSION['register_email'] = "";
 $_SESSION['register_password'] = "";
 $_SESSION['register_password_confirm'] = "";
+$_SESSION['error'] = "none";
 header("Location: ../../index.php");

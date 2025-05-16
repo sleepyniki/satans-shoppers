@@ -49,6 +49,11 @@ if(!is_int(intval($_POST['quantity'])) || !isset($_POST['quantity']) || empty($_
 	exit;
 }
 
+if($_POST['quantity'] > 666 || $_POST['quantity'] < 1){
+	header("Location: ../../product.php?id=" . $_GET['id']);
+	exit;
+}
+
 $sql = "SELECT id, price, amount FROM `cart-items` WHERE cart_id = ? AND product_id = ?";
 $statement = $conn->prepare($sql);
 $statement->execute([$cart_id['id'], $_GET['id']]);

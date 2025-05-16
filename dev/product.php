@@ -9,22 +9,23 @@ if(isset($_GET['id'])){
 	$statement->execute([$_GET['id']]);
 	$product = $statement->fetch();
 
-	if(isset($_SESSION["username"])){
+	if(!empty($_SESSION["username"]) || isset($_SESSION["username"])){
 		$sql = "SELECT id FROM users WHERE username = ?";
 		$statement = $conn->prepare($sql);
 		$statement->execute([$_SESSION["username"]]);
 		$user_id = $statement->fetch();
-
-		$sql = "SELECT id FROM `shopping-cart` WHERE user_id = ?";
-		$statement = $conn->prepare($sql);
-		$statement->execute([$user_id['id']]);
-		$cart_id = $statement->fetch();
-
-		if(!empty($cart_id)){
-			$sql = "SELECT amount FROM `cart-items` WHERE cart_id = ? AND product_id = ?";
+		if(!empty($user_id)){
+			$sql = "SELECT id FROM `shopping-cart` WHERE user_id = ?";
 			$statement = $conn->prepare($sql);
-			$statement->execute([$cart_id['id'], $_GET['id']]);
-			$quantity = $statement->fetch();
+			$statement->execute([$user_id['id']]);
+			$cart_id = $statement->fetch();
+
+			if(!empty($cart_id)){
+				$sql = "SELECT amount FROM `cart-items` WHERE cart_id = ? AND product_id = ?";
+				$statement = $conn->prepare($sql);
+				$statement->execute([$cart_id['id'], $_GET['id']]);
+				$quantity = $statement->fetch();
+			}
 		}
 	}
 }
