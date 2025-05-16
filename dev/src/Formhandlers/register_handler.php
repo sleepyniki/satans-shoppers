@@ -16,6 +16,16 @@ $_SESSION['register_email'] = $_POST['email'];
 $_SESSION['register_password'] = $_POST['password'];
 $_SESSION['register_password_confirm'] = $_POST['password_confirm'];
 
+$sql = "SELECT username FROM users WHERE username = ?";
+$statement = $conn->prepare($sql);
+$statement->execute([$_POST['username']]);
+$username_check = $statement->fetch();
+
+$sql = "SELECT email FROM users WHERE email = ?";
+$statement = $conn->prepare($sql);
+$statement->execute([$_POST['email']]);
+$email_check = $statement->fetch();
+
 if($_POST['password'] != $_POST['password_confirm']){
 	$valid="Passwords do not match";
 }
@@ -29,7 +39,11 @@ if(!isset($_POST['password']) || empty($_POST['password'])){
 }
 
 if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-	$valid="Email not filled in";
+	$valid="Valid email not filled in";
+}
+
+if(!empty($email_check)){
+	$valid="Email already in use";
 }
 
 if(!isset($_POST['country']) || empty($_POST['country'])){
@@ -56,11 +70,6 @@ if(!isset($_POST['username']) || empty($_POST['username'])){
 	$valid="Username not filled in";
 }
 
-$sql = "SELECT username FROM users WHERE username = ?";
-$statement = $conn->prepare($sql);
-$statement->execute([$_POST['username']]);
-$username_check = $statement->fetch();
-
 if(!empty($username_check)){
 	$valid = "Username already exists";
 }
@@ -77,7 +86,6 @@ if($valid != "yes"){
 
 //all is valid
 //insert sql here
-
 
 $sql = "INSERT INTO users (username, fullname, password, email, streetname, housenumber, postalcode, city, country) VALUES (?,?,?,?,?,?,?,?,?)";
 $statement = $conn->prepare($sql);

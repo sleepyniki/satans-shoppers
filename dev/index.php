@@ -40,7 +40,6 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
                   class="uk-text-small uk-text-primary">All</span></h4>
             <div class="uk-flex uk-flex-home uk-flex-wrap">
             <?php foreach($products as $product): ?>
-            <!-- PRODUCT TEMPLATE -->
                <a class="product-card uk-card uk-card-home uk-card-default uk-card-small uk-card-hover"
                   href="product.php?id=<?= $product['id'] ?>">
                   <div class="uk-card-media-top uk-align-center">
@@ -53,8 +52,6 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
                      </p>
                   </div>
                </a>
-
-            <!-- END OF PRODUCT TEMPLATE -->
             <?php endforeach; ?>
          </section>
 <?php
