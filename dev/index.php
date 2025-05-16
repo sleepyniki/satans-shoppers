@@ -1,19 +1,8 @@
 <?php
 include_once("templates/head.inc.php");
-
-$db_host = '127.0.0.1';
-$db_name = 'devil-shop';
-$db_user = 'root';
-$db_pass = '';
-
 $statement = $conn->prepare('SELECT * FROM products');
 $statement->execute();
 $products = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-
-
-
-
 ?>
 
    <main class="uk-container uk-padding">
