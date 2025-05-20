@@ -1,7 +1,38 @@
 <?php
 include_once("templates/head.inc.php");
-$statement = $conn->prepare('SELECT * FROM products');
+
+$category="";
+
+if(empty($_GET['category']) || !isset($_GET['category'])){
+	header("Location: index.php?category=all");
+	exit;
+} 
+
+if($_GET['category'] == "demons"){
+	$category="1";
+}
+if($_GET['category'] == "contracts"){
+	$category="2";
+}
+if($_GET['category'] == "materials"){
+	$category="3";
+}
+if($_GET['category'] == "collectibles"){
+	$category="4";
+}
+if($_GET['category'] == "books"){
+	$category="5";
+}
+
+if($category == ""){
+$statement = $conn->prepare("SELECT * FROM products");
 $statement->execute();
+}
+else{
+$statement = $conn->prepare("SELECT * FROM products WHERE category_id = ?");
+$statement->execute([$category]);
+}
+
 $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
@@ -14,30 +45,19 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
          <section class="uk-width-1-5">
             <h4>Categories</h4>
             <hr class="uk-divider" />
-            <div>
-               <input class="uk-checkbox" id="Demons" type="checkbox" name="Demons" />
-               <label for="demons">Demons</label>
-            </div>
-            <div>
-               <input class="uk-checkbox" id="Contracts" type="checkbox" name="Contracts" />
-               <label for="contracts">Contracts</label>
-            </div>
-            <div>
-               <input class="uk-checkbox" id="Summoning" type="checkbox" name="Summoning" />
-               <label for="materials">Summoning Materials</label>
-            </div>
-            <div>
-               <input class="uk-checkbox" id="Collectibles" type="checkbox" name="Collectibles" />
-               <label for="collectibles">Collectibles</label>
-            </div>
-            <div>
-               <input class="uk-checkbox" id="books" type="checkbox" name="books" />
-               <label for="books">Books</label>
-            </div>
+<a class="uk-link-text" href="?category=all">All</a>
+<br>
+<a class="uk-link-text" href="?category=demons">Demons</a>
+<br>
+<a class="uk-link-text" href="?category=contracts">Contracts</a>
+<br>
+<a class="uk-link-text" href="?category=materials">Summoning Materials</a>
+<br>
+<a class="uk-link-text" href="?category=collectibles">Collectibles</a>
+<br>
+<a class="uk-link-text" href="?category=books">Books</a>
          </section>
          <section class="uk-width-4-5">
-            <h4 class="uk-text-muted uk-text-small">Chosen categories: <span
-                  class="uk-text-small uk-text-primary">All</span></h4>
             <div class="uk-flex uk-flex-home uk-flex-wrap">
             <?php foreach($products as $product): ?>
                <a class="product-card uk-card uk-card-home uk-card-default uk-card-small uk-card-hover"
