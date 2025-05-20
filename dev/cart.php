@@ -16,10 +16,10 @@ $shopping_cart = $statement->fetchAll(PDO::FETCH_ASSOC);
 			$cart_id = $statement->fetch();
 
 			if(!empty($cart_id)){
-				$sql = "SELECT amount FROM `cart-items` WHERE cart_id = ?";
+				$sql = "SELECT * FROM `cart-items` WHERE cart_id = ?";
 				$statement = $conn->prepare($sql);
 				$statement->execute([$cart_id['id']]);
-				$quantity = $statement->fetch();
+				$cart_items = $statement->fetchAll();
 			}
 		}
 	}
@@ -30,17 +30,21 @@ $shopping_cart = $statement->fetchAll(PDO::FETCH_ASSOC);
          <div class="uk-grid">
             <section class="uk-width-2-3 uk-flex uk-flex-column uk-cart-gap">
                <!-- START OF SHOPPING CART PRODUCT TEMPLATE -->
+               <?php foreach($cart_items as $cart_item):
+                        $statement = $conn->prepare("Select * From products where id = ? ");  
+                        $statement->execute([$cart_item['product_id']]);
+                        $product = $statement->fetch();
+               ?>
                <div class="uk-card-default uk-card-small uk-flex uk-flex-between">
                   <div class="uk-card-media-left uk-widht-1-5">
-                     <img src="" alt="" class="product-image uk-align-center">
+                     <img src="<?= 'img/' . $product['image']; ?>" width = 300 class="" alt="" title="" />
                   </div>
                   <div class="uk-card-body uk-width-4-5 uk-flex uk-flex-between">
                      <div class="uk-width-3-4 uk-flex uk-flex-column">
-                        <h2>Title</h2>
-                        <p class="uk-margin-remove-top">Short Decription</p>
+                        <h2><?= $product['name']; ?></h2>
                         <div class="uk-flex uk-flex-between">
-                           <p class="uk-text-primary uk-text-bold">Price per piece: &euro; <!-- <?= sprintf("%.2f", $cart_item->price) ?> --></p>
-                           <p class="uk-text-primary uk-text-bold uk-margin-remove-top">In total: &euro; <!-- <?= sprintf("%.2f", $cart_item->product_total) ?> --></p>
+                           <p class="uk-text-primary uk-text-bold">Price per piece: >&euro; <?= $product["price"]; ?></p>
+            
                         </div>
                      </div>
                      <div class="uk-width-1-4 uk-flex uk-flex-between uk-flex-middle uk-flex-center">
@@ -56,6 +60,7 @@ $shopping_cart = $statement->fetchAll(PDO::FETCH_ASSOC);
                      </div>
                   </div>
                </div>
+               <?php endforeach; ?>
                <!-- END OF SHOPPING CART PRODUCT TEMPLATE -->
             </section>
             <section class="uk-width-1-3">

@@ -20,7 +20,7 @@ if(!isset($shopping_cart) || empty($shopping_cart)){
 $statement = $conn->prepare("SELECT SUM(amount) FROM `cart-items` WHERE cart_id = ?");
 $statement->execute([$shopping_cart['id']]);
 $total_products = $statement->fetch();
-print_r($total_products);
+
 
 ?>
       <main class="uk-container uk-padding">
