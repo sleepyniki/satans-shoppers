@@ -37,10 +37,6 @@ $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
    <main class="uk-container uk-padding">
-      <div class="uk-alert-success" uk-alert>
-         <a href class="uk-alert-close" uk-close></a>
-         <p>Login successful</p>
-      </div>
       <div class="uk-grid">
          <section class="uk-width-1-5">
             <h4>Categories</h4>
