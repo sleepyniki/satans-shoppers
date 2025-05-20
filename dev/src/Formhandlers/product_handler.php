@@ -29,15 +29,7 @@ if(isset($_SESSION["username"])){
 	$statement->execute([$user_id['id']]);
 	$cart_id = $statement->fetch();
 
-	if(empty($cart_id)){
-		$sql = "INSERT INTO `shopping-cart` (user_id, shopping_date, total_amount) VALUES (?,?,0)";
-		$statement = $conn->prepare($sql);
-		$statement->execute([$user_id['id'],date("d-m-Y")]);
-		$sql = "SELECT id FROM `shopping-cart` WHERE user_id = ?";
-		$statement = $conn->prepare($sql);
-		$statement->execute([$user_id['id']]);
-		$cart_id = $statement->fetch();
-	}
+	
 }
 else{
 	header("Location: ../../product.php?id=" . $_GET['id']);

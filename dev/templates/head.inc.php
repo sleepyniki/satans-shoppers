@@ -41,6 +41,7 @@ require_once(dirname(__DIR__) . "/src/Database/Database.php");
                   <li><a href="login.php"><span uk-icon="icon: sign-in"></span>Log In</a></li>
                   <li><a href="register.php"><span uk-icon="icon: file-edit"></span>Register</a></li>
 <?php else:  
+	$total_products = 0;
 	$statement = $conn->prepare("SELECT * FROM users WHERE username = ?");
 	$statement->execute([$_SESSION['username']]);
 	$user = $statement->fetch();
@@ -50,10 +51,22 @@ require_once(dirname(__DIR__) . "/src/Database/Database.php");
 		$statement->execute([$user['id']]);
 		$shopping_cart = $statement->fetch();
 
-		if(!empty($shopping_cart)){
-			$statement = $conn->prepare("SELECT SUM(amount) FROM `cart-items` WHERE cart_id = ?");
-			$statement->execute([$shopping_cart['id']]);
-			$total_products = $statement->fetch();
+		if(empty($shopping_cart)){
+			$sql = "INSERT INTO `shopping-cart` (user_id, shopping_date, total_amount) VALUES (?,?,0)";
+			$statement = $conn->prepare($sql);
+			$statement->execute([$user['id'],date("d-m-Y")]);
+			$sql = "SELECT id FROM `shopping-cart` WHERE user_id = ?";
+			$statement = $conn->prepare($sql);
+			$statement->execute([$user['id']]);
+			$shopping_cart = $statement->fetch();
+		}
+
+		$statement = $conn->prepare("SELECT SUM(amount) FROM `cart-items` WHERE cart_id = ?");
+		$statement->execute([$shopping_cart['id']]);
+		$total_products = $statement->fetch();
+
+		if(empty($total_products['SUM(amount)']) || !isset($total_products['SUM(amount)'])){
+			$total_products['SUM(amount)'] = 0;
 		}
 	}
 ?>
