@@ -17,7 +17,7 @@ require_once("templates/head.inc.php");
                         </div>
                         <div class="uk-card-default uk-padding-small uk-flex-column uk-flex-middle uk-flex-center">
                            <h3 class="uk-text-center">Order Number</h3>
-                           <h2 class="uk-text-center">000000</h2>
+                           <h2 class="uk-text-center">666-666</h2>
                         </div>
                      </div>
                   </div>
