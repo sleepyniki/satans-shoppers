@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['test'] = 'empty';
+$_SESSION['test'] = '';
 require_once('../Database/Database.php');
 
 

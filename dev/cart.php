@@ -1,6 +1,6 @@
 <?php
 include_once("templates/head.inc.php");
-$statement = $conn->prepare('SELECT * FROM shopping-cart');
+$statement = $conn->prepare('SELECT * FROM `shopping-cart`');
 $statement->execute();
 $shopping_cart = $statement->fetchAll(PDO::FETCH_ASSOC);
 
