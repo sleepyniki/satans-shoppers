@@ -40,12 +40,28 @@ require_once(dirname(__DIR__) . "/src/Database/Database.php");
 <?php if(empty($_SESSION["username"])): ?>
                   <li><a href="login.php"><span uk-icon="icon: sign-in"></span>Log In</a></li>
                   <li><a href="register.php"><span uk-icon="icon: file-edit"></span>Register</a></li>
-<?php else: ?>
+<?php else:  
+	$statement = $conn->prepare("SELECT * FROM users WHERE username = ?");
+	$statement->execute([$_SESSION['username']]);
+	$user = $statement->fetch();
+
+	if(!empty($user)){
+		$statement = $conn->prepare("SELECT * FROM `shopping-cart` WHERE user_id = ?");
+		$statement->execute([$user['id']]);
+		$shopping_cart = $statement->fetch();
+
+		if(!empty($shopping_cart)){
+			$statement = $conn->prepare("SELECT SUM(amount) FROM `cart-items` WHERE cart_id = ?");
+			$statement->execute([$shopping_cart['id']]);
+			$total_products = $statement->fetch();
+		}
+	}
+?>
                   <li>
                      <a href="cart.php">
                         <span uk-icon="icon: cart"></span>
                         Cart
-                        <span id="cart_amount_indicator" class="uk-badge">0</span>
+                        <span id="cart_amount_indicator" class="uk-badge"><?= $total_products['SUM(amount)'] ?></span>
                      </a>
                   </li>
                   <li>
