@@ -12,4 +12,7 @@ $_SESSION['register_email'] = "";
 $_SESSION['register_password'] = "";
 $_SESSION['register_password_confirm'] = "";
 $_SESSION['error'] = "none";
+$_SESSION['error_login'] = "none";
+$_SESSION['login_email'] = "";
+$_SESSION['login_password'] = "";
 header("Location: ../../index.php");

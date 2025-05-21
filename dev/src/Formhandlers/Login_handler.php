@@ -2,19 +2,21 @@
 session_start();
 require_once('../Database/Database.php');
 
-
-// var_dump($_POST);
-// print_r($users);
+$_SESSION['error_login'] = "none";
+$_SESSION['login_email'] = $_POST['email'];
+$_SESSION['login_password'] = $_POST['password'];
 
 // this is the login code make it possible to log in 
 if(!isset($_POST['email']) || empty($_POST['email'])) {
+	$_SESSION['error_login'] = "Email not filled in";
 	header('Location: ../../login.php');
 	exit();
 }
 
 if(!isset($_POST['password']) || empty($_POST['password'])) {
-   header('Location: ../../login.php');
-   exit();
+	$_SESSION['error_login'] = "Password not filled in";
+	header('Location: ../../login.php');
+	exit();
 }
 
 $sql = "SELECT * FROM users WHERE email = ?";
@@ -23,12 +25,14 @@ $statement->execute([$_POST['email']]);
 $users = $statement->fetch(PDO::FETCH_ASSOC);
 
 if(empty($users)) {
-    header('location: ../../login.php');
-    exit();
+	$_SESSION['error_login'] = "No user found";
+	header('location: ../../login.php');
+	exit();
 }
 if($_POST['password'] != $users['password']) {
-     header('Location: ../../login.php');
-     exit();
+	$_SESSION['error_login'] = "Wrong password";
+	header('Location: ../../login.php');
+	exit();
 }
 
 // print_r($users);
