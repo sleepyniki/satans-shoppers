@@ -1,28 +1,28 @@
 <?php
 include_once("templates/head.inc.php");
-$statement = $conn->prepare('SELECT * FROM `shopping-cart`');
-$statement->execute();
-$shopping_cart = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 if(!empty($_SESSION["username"]) || isset($_SESSION["username"])){
 	$sql = "SELECT id FROM users WHERE username = ?";
 	$statement = $conn->prepare($sql);
 	$statement->execute([$_SESSION["username"]]);
 	$user = $statement->fetch();
-	if(!empty($user)){
-		$sql = "SELECT * FROM `shopping-cart` WHERE user_id = ?";
-		$statement = $conn->prepare($sql);
-		$statement->execute([$user['id']]);
-		$shopping_cart = $statement->fetch();
+	if(empty($user) || !isset($user)){
+		echo "Not a valid user";
+		exit;
+	}
+
+	$sql = "SELECT * FROM `shopping-cart` WHERE user_id = ?";
+	$statement = $conn->prepare($sql);
+	$statement->execute([$user['id']]);
+	$shopping_cart = $statement->fetch();
 
 		if(!empty($shopping_cart)){
 			$sql = "SELECT * FROM `cart-items` WHERE cart_id = ?";
 			$statement = $conn->prepare($sql);
 			$statement->execute([$shopping_cart['id']]);
-			$shopping_cart_items = $statement->fetchAll();
+			$cart_items = $statement->fetchAll();
            
 		}
-	}
 }
 
 
@@ -31,9 +31,9 @@ if(!empty($_SESSION["username"]) || isset($_SESSION["username"])){
          <div class="uk-grid">
             <section class="uk-width-2-3 uk-flex uk-flex-column uk-cart-gap">
 
-               <?php foreach($shopping_cart_items as $shopping_cart_item):
+               <?php foreach($cart_items as $cart_item):
                         $statement = $conn->prepare("Select * From products where id = ?");  
-                        $statement->execute([$shopping_cart_item['product_id']]);
+                        $statement->execute([$cart_item['product_id']]);
                         $product = $statement->fetch();
                ?>
                <div class="uk-card-default uk-card-small uk-flex uk-flex-between">
@@ -49,7 +49,7 @@ if(!empty($_SESSION["username"]) || isset($_SESSION["username"])){
                      </div>
                      <div class="uk-width-1-4 uk-flex uk-flex-between uk-flex-middle uk-flex-center">
                         <div class="uk-width-1-4 uk-flex uk-flex-column uk-flex-middle">
-                           <input id="amount" class="uk-form-controls uk-form-width-xsmall uk-text-medium" name="amount" value="<?= $shopping_cart_item["amount"] ?>" type="number" />
+                           <input id="amount" class="uk-form-controls uk-form-width-xsmall uk-text-medium" name="amount" min="1" max="666" onchange="window.location.href='src/Helpers/Cart_update.php?id=<?= $product['id'] ?>&quantity=' + document.getElementById('amount').value;" value="<?= $cart_item["amount"] ?>" type="number" />
                         </div>
                         <div class="uk-width-1-4">
                            <a href="src/Helpers/Cart_remove.php?id=<?= $product['id'] ?>" class="uk-link-cart-trash uk-flex uk-flex-column uk-flex-middle uk-text-danger uk-flex-1">

@@ -1,5 +1,11 @@
 <?php
 require_once("templates/head.inc.php");
+
+if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
+	echo "Not a valid user";
+	exit;
+}
+
 $statement = $conn->prepare("SELECT * FROM users WHERE username = ?");
 $statement->execute([$_SESSION['username']]);
 $user = $statement->fetch();
