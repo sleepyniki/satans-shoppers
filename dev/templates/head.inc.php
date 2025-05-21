@@ -36,7 +36,7 @@ require_once(dirname(__DIR__) . "/src/Database/Database.php");
             </div>
             <div class="uk-navbar-right">
                <ul class="uk-navbar-nav">
-                  <li class="uk-active"><a href="index.php"><span uk-icon="icon: home"></span>Home</a></li>
+                  <li><a href="index.php"><span uk-icon="icon: home"></span>Home</a></li>
 <?php if(empty($_SESSION["username"])): ?>
                   <li><a href="login.php"><span uk-icon="icon: sign-in"></span>Log In</a></li>
                   <li><a href="register.php"><span uk-icon="icon: file-edit"></span>Register</a></li>
