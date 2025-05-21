@@ -1,6 +1,5 @@
 <?php
 session_start();
-$_SESSION['test'] = '';
 require_once('../Database/Database.php');
 
 
@@ -9,14 +8,12 @@ require_once('../Database/Database.php');
 
 // this is the login code make it possible to log in 
 if(!isset($_POST['email']) || empty($_POST['email'])) {
-header('Location: ../../login.php');
-$_SESSION['test'] = 'no email';
-exit();
+	header('Location: ../../login.php');
+	exit();
 }
 
 if(!isset($_POST['password']) || empty($_POST['password'])) {
    header('Location: ../../login.php');
-   $_SESSION['test'] = 'no password';
    exit();
 }
 
@@ -26,12 +23,10 @@ $statement->execute([$_POST['email']]);
 $users = $statement->fetch(PDO::FETCH_ASSOC);
 
 if(empty($users)) {
-    $_SESSION['test'] = 'no user';
     header('location: ../../login.php');
     exit();
 }
 if($_POST['password'] != $users['password']) {
-    $_SESSION['test'] = 'no password';
      header('Location: ../../login.php');
      exit();
 }

@@ -51,7 +51,7 @@ if(isset($_GET['id'])){
                         </div>
                         <div>
 <?php if(!empty($_SESSION["username"])):  ?>
-			   <form method="POST" action="src/Formhandlers/product_handler.php?id=<?= $_GET['id'] ?>" "uk-width-1-1 uk-flex uk-flex-center">
+			   <form method="POST" action="src/Formhandlers/Product_handler.php?id=<?= $_GET['id'] ?>" "uk-width-1-1 uk-flex uk-flex-center">
 			   <input type="number" name="quantity" value="<?= $quantity; ?>" min="1" max="666">
                            <button class="uk-button uk-button-primary" type="submit">
                               <span uk-icon="icon: cart"></span>

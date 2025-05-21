@@ -44,7 +44,7 @@ $total_products = $statement->fetch();
                   <div class="uk-card-footer">
                      <div class="uk-flex uk-flex-between uk-flex-center">
                         <p class="uk-width-1-2 uk-text-bold">In Total</p>
-                        <p class="uk-width-1-2 uk-margin-remove-top uk-text-right uk-text-bold">&euro; <?= floatval($shopping_cart['total_amount']) + 6.66 ?></p>
+                        <p class="uk-width-1-2 uk-margin-remove-top uk-text-right uk-text-bold">&euro; <?= $shopping_cart['total_amount'] + 6.66 ?></p>
                      </div>
                   </div>
                </div>
