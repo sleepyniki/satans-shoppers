@@ -52,11 +52,9 @@ require_once(dirname(__DIR__) . "/src/Database/Database.php");
 		$shopping_cart = $statement->fetch();
 
 		if(empty($shopping_cart)){
-			$sql = "INSERT INTO `shopping-cart` (user_id, shopping_date, total_amount) VALUES (?,?,0)";
-			$statement = $conn->prepare($sql);
+			$statement = $conn->prepare("INSERT INTO `shopping-cart` (user_id, shopping_date, total_amount) VALUES (?,?,0)");
 			$statement->execute([$user['id'],date("d-m-Y")]);
-			$sql = "SELECT id FROM `shopping-cart` WHERE user_id = ?";
-			$statement = $conn->prepare($sql);
+			$statement = $conn->prepare("SELECT id FROM `shopping-cart` WHERE user_id = ?");
 			$statement->execute([$user['id']]);
 			$shopping_cart = $statement->fetch();
 		}

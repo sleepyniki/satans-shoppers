@@ -19,8 +19,7 @@ if(!isset($_POST['password']) || empty($_POST['password'])) {
 	exit();
 }
 
-$sql = "SELECT * FROM users WHERE email = ?";
-$statement = $conn->prepare($sql);
+$statement = $conn->prepare("SELECT * FROM users WHERE email = ?");
 $statement->execute([$_POST['email']]);
 $users = $statement->fetch(PDO::FETCH_ASSOC);
 

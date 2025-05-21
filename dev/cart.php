@@ -2,8 +2,7 @@
 include_once("templates/head.inc.php");
 
 if(!empty($_SESSION["username"]) || isset($_SESSION["username"])){
-	$sql = "SELECT id FROM users WHERE username = ?";
-	$statement = $conn->prepare($sql);
+	$statement = $conn->prepare("SELECT id FROM users WHERE username = ?");
 	$statement->execute([$_SESSION["username"]]);
 	$user = $statement->fetch();
 	if(empty($user) || !isset($user)){
@@ -11,17 +10,14 @@ if(!empty($_SESSION["username"]) || isset($_SESSION["username"])){
 		exit;
 	}
 
-	$sql = "SELECT * FROM `shopping-cart` WHERE user_id = ?";
-	$statement = $conn->prepare($sql);
+	$statement = $conn->prepare("SELECT * FROM `shopping-cart` WHERE user_id = ?");
 	$statement->execute([$user['id']]);
 	$shopping_cart = $statement->fetch();
 
 		if(!empty($shopping_cart)){
-			$sql = "SELECT * FROM `cart-items` WHERE cart_id = ?";
-			$statement = $conn->prepare($sql);
+			$statement = $conn->prepare("SELECT * FROM `cart-items` WHERE cart_id = ?");
 			$statement->execute([$shopping_cart['id']]);
 			$cart_items = $statement->fetchAll();
-           
 		}
 }
 

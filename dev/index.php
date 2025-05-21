@@ -25,12 +25,12 @@ if($_GET['category'] == "books"){
 }
 
 if($category == ""){
-$statement = $conn->prepare("SELECT * FROM products");
-$statement->execute();
+	$statement = $conn->prepare("SELECT * FROM products");
+	$statement->execute();
 }
 else{
-$statement = $conn->prepare("SELECT * FROM products WHERE category_id = ?");
-$statement->execute([$category]);
+	$statement = $conn->prepare("SELECT * FROM products WHERE category_id = ?");
+	$statement->execute([$category]);
 }
 
 $products = $statement->fetchAll(PDO::FETCH_ASSOC);

@@ -16,13 +16,11 @@ $_SESSION['register_email'] = $_POST['email'];
 $_SESSION['register_password'] = $_POST['password'];
 $_SESSION['register_password_confirm'] = $_POST['password_confirm'];
 
-$sql = "SELECT username FROM users WHERE username = ?";
-$statement = $conn->prepare($sql);
+$statement = $conn->prepare("SELECT username FROM users WHERE username = ?");
 $statement->execute([$_POST['username']]);
 $username_check = $statement->fetch();
 
-$sql = "SELECT email FROM users WHERE email = ?";
-$statement = $conn->prepare($sql);
+$statement = $conn->prepare("SELECT email FROM users WHERE email = ?");
 $statement->execute([$_POST['email']]);
 $email_check = $statement->fetch();
 
