@@ -101,7 +101,7 @@ $total_products = $statement->fetch();
                   </div>
                   <div class="uk-card-footer">
                      <div class="uk-flex uk-flex-1 uk-flex-middle uk-flex-center uk-margin-medium-top">
-                           <a href="order_confirm.php" class="uk-button uk-button-primary">
+                           <a href="src/Helpers/Process_payment.php" class="uk-button uk-button-primary">
                               Pay
                            </a>
                         </div>
