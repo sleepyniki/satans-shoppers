@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2025 at 06:59 AM
+-- Generation Time: May 21, 2025 at 07:03 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,11 +41,11 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `price`, `name`, `description`, `image`, `category_id`) VALUES
-(1, 150.00, 'Phone Call with Satan', 'When buying this product you will be given a phone call with the Dark Lord himself, Satan! This call i guaranteed to last at least 666 seconds.', 'phone.png', 1),
+(1, 150.00, 'Phone Call with Satan', 'When buying this product you will be given a phone call with the Dark Lord himself, Satan! This call is guaranteed to last at least 666 seconds.', 'phone.png', 1),
 (2, 50.00, 'Ticket to Hell', 'This is a ticket to Hell. When you say that someone should go to hell, this is the gift for them. Buying this item will send the person straight to Hell.', 'ticket.png', 2),
 (3, 20.00, 'Summoning my first demon, a book for young children', 'What is a good way for children to learn how to summon a demon? In this book we will explain how a child can summon their first demon.', 'summoning.png', 5),
-(4, 20.00, ' I accidentally summoned a demon and I don\'t know what to do, a love romance novel', 'A trilling story about love danger and demonic drama.\r\nIn this book follow the story of Alex\r\nwho accidentally summoned a demon and fell in love with them.', 'book.png', 5),
-(5, 10.00, 'Summoning Candles', 'This is a just set of summoning candles, nothing more.', 'candle.png', 3),
+(4, 20.00, ' I accidentally summoned a demon and I don\'t know what to do, a romance novel', 'A thrilling story about love danger and demonic drama.\r\nIn this book follow the story of Alex Nilesson who accidentally summoned a demon and fell in love with them.', 'book.png', 5),
+(5, 10.00, 'Summoning Candles', 'This is a just set of summoning candles, nothing special.', 'candle.png', 3),
 (6, 70.00, 'Artificial Blood', 'This is an artificial blood pack for summoning demons with specific dietary constraints.', 'bloodbag.png', 3),
 (7, 66.66, 'Satan\'s Contracts™ Booster Pack', 'Collect all of the contracts made by Satan throughout history with this standard 5 card booster pack.', 'satans-contracts-boosterpack-1.png', 4),
 (8, 18.99, ' Dante’s Inferno, A Travel Guide', 'An epic describing Dante Alighieri\'s journey through the levels of Hell.', 'inferno.png', 5),
